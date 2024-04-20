@@ -1,21 +1,35 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSS実績</title>
+---
+let res = await fetch("https://kamutya.net/wp-json/wp/v2/works/");
+let posts = await res.json();
+---
 
-</head>
-<body>
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS実績</title>
+  </head>
+  <body>
     <h1>こんにちは、世界！</h1>
 
-    <div id="link"></div>
+    <section>
+      <h1>List of Dinosaurs</h1>
+      {
+        posts.map((post) => (
+          <article>
+            <h2>
+              <a href={`/dinos/${post.slug}/`} set:html={post.title.rendered} />
+            </h2>
+            <Fragment set:html={post.content.rendered} />
+          </article>
+        ))
+      }
+    </section>
 
-    <div id="result"></div>
-
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
     <script>
      import "../../scripts/rest-api.js";
-    </script>
-</body>
+    </script> -->
+  </body>
 </html>

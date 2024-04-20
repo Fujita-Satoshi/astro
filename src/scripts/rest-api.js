@@ -2,6 +2,7 @@
 //   console.log("rest-api");
 // });
 
+
 $(function () {
 
   $.ajax({
